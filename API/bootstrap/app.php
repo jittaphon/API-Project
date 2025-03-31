@@ -58,14 +58,11 @@ $app->singleton(
 | the default version. You may register other files below as needed.
 |
 */
-
-$app->routeMiddleware([
-    'jwt.auth' => App\Http\Middleware\JwtMiddleware::class,
-]);
+$app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 
 
 $app->configure('app');
-
+$app->configure('auth');
 
 /*
 |--------------------------------------------------------------------------
@@ -89,6 +86,10 @@ $app->configure('app');
 $app->middleware([
     App\Http\Middleware\CorsMiddleware::class
 ]);
+$app->routeMiddleware([
+    'jwt.auth' => App\Http\Middleware\JwtMiddleware::class,
+]);
+
 
 /*
 |--------------------------------------------------------------------------
